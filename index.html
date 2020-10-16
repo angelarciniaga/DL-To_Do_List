@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <title>Desafío To Do List</title>
+    <style>
+        #app {
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+            color: #000;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Crea una nueva tarea</h1>
+        <form @submit.prevent="agregarTarea">
+            <label for="tarea">Tarea</label>
+            <input type="text" v-model="tarea">
+            <button type="submit">crear</button>
+        </form>
+        <div class="noTarea">
+            <h3>Lista</h3>
+        </div>
+        <div>
+            <ul>
+                <li v-for="(task, index) in tareas" :key="index">{{index+1}}.-{{task}}</li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        var app = new Vue({
+            el: '#app',
+            data: {
+                tarea:'',
+                tareas:[],
+            },
+            methods: {
+                agregarTarea(){
+                this.tareas.push(this.tarea);
+                this.tarea = '';
+                },
+            },
+
+        });
+    </script>
+</body>
+</html>
